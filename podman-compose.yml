@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend_python
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend_python:/app
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend_vue
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend_vue:/app
+    restart: unless-stopped
