@@ -2,3 +2,4 @@ __pycache__
 .ideia/
 .vs/
 .venv/
+.env
