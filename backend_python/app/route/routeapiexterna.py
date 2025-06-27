@@ -1,7 +1,14 @@
 import requests as rq
+import os
+import streamlit as st
+from dotenv import load_dotenv
+
+
+# Carrega variáveis de ambiente do .env
+load_dotenv()
 
 # Chave da API do YouTube
-chaveAcessoYT = 'AIzaSyAZpDOyplCZuMaFHhWZEHdHi93LC5Vx6RI'
+chaveAcessoYT = os.getenv('YOUTUBE_API_KEY')
 yt_consulta = 'https://www.googleapis.com/youtube/v3/search?'
 
 def consultaVideosYT():

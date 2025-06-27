@@ -8,6 +8,11 @@ from typing import List
 import os
 import shutil
 import requests as rq
+import streamlit as st
+from dotenv import load_dotenv
+
+# Carrega variáveis de ambiente do .env
+load_dotenv()
 
 router = APIRouter(
     prefix="/api/videos",
@@ -64,7 +69,7 @@ def carregar_videos(db: Session = Depends(get_db)):
 #Consulta no API do Youtube
 @router.get("/apiexterna_consulta")
 def consultaExterna(txtPesquisa: str):
-    chaveAcessoYT = 'AIzaSyAZpDOyplCZuMaFHhWZEHdHi93LC5Vx6RI'
+    chaveAcessoYT = os.getenv('YOUTUBE_API_KEY')
     url_consulta = f"https://www.googleapis.com/youtube/v3/search?key={chaveAcessoYT}&q={txtPesquisa}&type=video&part=snippet&maxResults=5"
     try:
         response = rq.get(url_consulta)
